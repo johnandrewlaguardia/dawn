@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Payroll Report{% endblock %}
+
+{% block content %}
+
+<div class="top-bar">
+
+    <h1>Payroll Report</h1>
+
+    <div>
+        <button onclick="window.print()" class="btn">Print Report</button>
+        <a href="{{ url_for('payroll.index') }}" class="btn">Back to Register</a>
+    </div>
+
+</div>
+
+<div class="card">
+    <h3>All Payroll Records</h3>
+    <p>Total Records: {{ payrolls|length }}</p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Salary</th>
+            <th>Allowance</th>
+            <th>Overtime</th>
+            <th>Deduction</th>
+            <th>Net Pay</th>
+            <th>Period</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in payrolls %}
+        <tr>
+            <td>{{ p.user.username }}</td>
+            <td>₱{{ "%.2f"|format(p.salary_snapshot) }}</td>
+            <td>₱{{ "%.2f"|format(p.allowance) }}</td>
+            <td>₱{{ "%.2f"|format(p.overtime) }}</td>
+            <td>₱{{ "%.2f"|format(p.deduction) }}</td>
+            <td>₱{{ "%.2f"|format(p.net_pay) }}</td>
+            <td>{{ p.payroll_period }}</td>
+            <td>{{ p.payroll_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<style>
+@media print {
+  .top-bar div, .btn { display: none !important; }
+}
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { border: 1px solid #121212; padding: 8px; }
+.table th { background: #0e56e7; text-align: left; }
+</style>
+
+{% endblock %}

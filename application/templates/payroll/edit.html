@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+
+    <h1>Edit Payroll</h1>
+
+    <form method="POST">
+
+        <p>Employee</p>
+        <input type="text" value="{{ payroll.employee_name }}" disabled>
+
+        <br><br>
+
+        <p>Salary at Payroll</p>
+        <input type="text" value="₱{{ "%.2f"|format(payroll.salary_snapshot) }}" disabled>
+
+        <br><br>
+
+        <p>Allowance</p>
+        <input
+            type="number"
+            name="allowance"
+            step="0.01"
+            value="{{ payroll.allowance }}"
+            required
+        >
+
+        <br><br>
+
+        <p>Overtime</p>
+        <input
+            type="number"
+            name="overtime"
+            step="0.01"
+            value="{{ payroll.overtime }}"
+            required
+        >
+
+        <br><br>
+
+        <p>Deduction</p>
+        <input
+            type="number"
+            name="deduction"
+            step="0.01"
+            value="{{ payroll.deduction }}"
+            required
+        >
+
+        <br><br>
+
+        <p>Payroll Date</p>
+        <input
+            type="date"
+            name="payroll_date"
+            value="{{ payroll.payroll_date }}"
+            required
+        >
+
+        <br><br>
+
+        <p>Payroll Period (Optional)</p>
+        <input
+            type="date"
+            name="payroll_period"
+            value="{{ payroll.payroll_period }}"
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Update Payroll
+        </button>
+
+        <a href="{{ url_for('payroll.index') }}" class="btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+
+    <h1>Create User</h1>
+
+    <form method="POST">
+
+        <p>Username</p>
+
+        <input
+            type="text"
+            name="username"
+            required
+        >
+
+        <br><br>
+
+        <p>Email</p>
+
+        <input
+            type="email"
+            name="email"
+            required
+        >
+
+        <br><br>
+
+        <p>Basic Salary</p>
+
+        <input
+            type="number"
+            name="basic_salary"
+            step="0.01"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Save User
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

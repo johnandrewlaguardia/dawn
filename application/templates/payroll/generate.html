@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+
+    <h1>Generate Payroll Period</h1>
+
+    <p>Select a date to generate payroll for all active employees. Existing payroll records will be preserved.</p>
+
+    <form method="POST">
+
+        <p>Payroll Period Date (MM/DD/YR)</p>
+
+        <input
+            type="date"
+            name="payroll_period"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit" class="btn-primary">
+            Generate Payroll for Active Employees
+        </button>
+
+        <a href="{{ url_for('payroll.index') }}" class="btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}
